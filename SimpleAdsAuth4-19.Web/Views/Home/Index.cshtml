@@ -1,0 +1,23 @@
+﻿@using SimpleAdsAuth4_19.Web
+@model IndexViewModel
+
+@foreach(var ad in Model.Ads)
+{
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="bg-light p-4 rounded shadow mb-3">
+                <h5>Listed by @ad.UserName</h5>
+                <h5>Listed on @ad.Date.ToShortDateString()</h5>
+                <h5>Phone Number: @ad.PhoneNumber</h5>
+                <h3>Details:</h3>
+                <p>@ad.Description</p>
+                @if(Model.CurrentUserId != null && Model.CurrentUserId == ad.UserId)
+                {
+                    <form action="/home/deletead" method="post">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+}
